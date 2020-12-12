@@ -1,0 +1,23 @@
+/* Task-3 */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gallery-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Task-6 */
+#validation-input {
+  border: 3px solid #bdbdbd;
+}
+
+#validation-input.valid {
+  border-color: #4caf50;
+}
+
+#validation-input.invalid {
+  border-color: #f44336;
+}

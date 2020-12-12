@@ -18,8 +18,9 @@
 
 let amount; // для даних з інпута
 let inputRef = document.querySelector('#controls > input');
-let mainDivRef = document.querySelector('#controls');
-let boxContainerRef = document.createElement('div');
+// let mainDivRef = document.querySelector('#controls');
+// let boxContainerRef = document.createElement('div');
+let boxContainerRef = document.querySelector('#boxes');
 let createBtnRef = document.querySelector('button[data-action="render"]');
 let destroyBtnRef = document.querySelector('button[data-action="destroy"]');
 
@@ -28,35 +29,35 @@ createBtnRef.addEventListener('click', handleRender);
 destroyBtnRef.addEventListener('click', handleDestoy);
 
 function handleInputValue(event) {
-  inputRef = event.target.value;
+  const inputVal = event.target.value;
   console.log(Number(inputRef.value));
-  amount = Number(event.target.value);
+  amount = Number(inputVal);
 }
 
 const createBoxes = function (amount) {
-  boxContainerRef.setAttribute('id', 'box');
-  mainDivRef.appendChild(boxContainerRef);
+  //   boxContainerRef.setAttribute('id', 'box');
+  //   mainDivRef.appendChild(boxContainerRef);
 
   let divSize = 30;
   for (let i = 0; i < amount; i += 1) {
-    // random color
-    let color = Math.floor(Math.random() * Math.pow(256, 3)).toString(16);
-    while (color.length < 6) {
-      color = '0' + color;
-    }
-
-    let finalColor = '#' + color;
-
-    // div(s)
     let div = document.createElement('div');
     div.classList.add('dom-div');
     div.style.height = `${divSize}px`;
     div.style.width = `${divSize}px`;
-    div.style.backgroundColor = finalColor;
+    div.style.backgroundColor = randomColor();
     divSize += 10;
     boxContainerRef.appendChild(div);
   }
 };
+
+function randomColor() {
+  let color = Math.floor(Math.random() * Math.pow(256, 3)).toString(16);
+  while (color.length < 6) {
+    color = '0' + color;
+  }
+  let finalColor = '#' + color;
+  return finalColor;
+}
 
 function handleRender() {
   createBoxes(amount);
@@ -64,4 +65,14 @@ function handleRender() {
 
 function handleDestoy() {
   boxContainerRef.textContent = '';
+  // const arrayChild = boxContainerRef.childNodes;
+  // console.dir(arrayChild);
+  // arrayChild.forEach(child => child.remove());
+  // while (arrayChild.length) {
+  //   arrayChild[0].remove();
+  // }
+  // for (let i = 0; i < arrayChild.length; i += 1) {
+  //   arrayChild[i].remove();
+  //   i -= 1;
+  // }
 }

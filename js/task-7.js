@@ -1,10 +1,9 @@
-let sizeControlRef = document.querySelector('#font-size-control');
-let textRef = document.querySelector('#text');
+let input = document.getElementById('font-size-control');
+let text = document.getElementById('text');
 
-sizeControlRef.addEventListener('input', handleSizeControlAmount);
+input.addEventListener('input', handleSizeControl);
 
-function handleSizeControlAmount(event) {
-  let fontSizeAmount = '';
-  fontSizeAmount = `${event.target.value}px`;
-  textRef.style.fontSize = fontSizeAmount;
+function handleSizeControl() {
+  let amount = `${input.value}px`;
+  text.style.fontSize = amount;
 }

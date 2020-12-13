@@ -7,6 +7,7 @@
 let input = document.getElementById('validation-input');
 input.addEventListener('blur', () => {
   let setedLength = Object.values(input.dataset);
+  console.log(setedLength);
   let correctLength = Number(setedLength.join());
   let actualLength = input.value.length;
 

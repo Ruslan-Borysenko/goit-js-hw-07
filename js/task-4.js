@@ -5,15 +5,15 @@
 // Добавь слушатели кликов на кнопки, вызовы функций и обновление интерфейса
 
 let counterValue = 0; // змінна, для збереження значення лічильника
-let value = document.getElementById('value'); // елемент, який служить для виводу даних
+const value = document.querySelector('#value'); // елемент, який служить для виводу даних
 
-const decrementBtn = document.getElementById('decrementBtn'); // кнопка з функцією віднімання
+const decrementBtn = document.querySelector('#decrementBtn'); // кнопка з функцією віднімання
 decrementBtn.onclick = function decrement() {
   counterValue--;
   value.innerHTML = counterValue;
 };
 
-const incrementBtn = document.getElementById('incrementBtn'); // кнопка з функцією додавання
+const incrementBtn = document.querySelector('#incrementBtn'); // кнопка з функцією додавання
 incrementBtn.onclick = function increment() {
   counterValue++;
   value.innerHTML = counterValue;

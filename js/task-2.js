@@ -17,10 +17,10 @@ const ingredients = [
 
 const ulRef = document.querySelector('#ingredients');
 
-for (let key in ingredients) {
-  let liRef = document.createElement('li');
-  liRef.textContent = ingredients[key];
-  ulRef.appendChild(liRef);
-}
+const ingrDOMArray = ingredients.map(element => {
+  const liRef = document.createElement('li');
+  liRef.textContent = element;
+  return liRef;
+});
 
-console.log(ulRef);
+ulRef.append(...ingrDOMArray);

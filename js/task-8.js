@@ -6,56 +6,58 @@
 // Каждый следующий div после первого, должен быть шире и выше предыдущего на 10px
 // Создай функцию destroyBoxes(), которая очищает div#boxes.
 
-let amount;
-let inputRef = document.querySelector('#controls > input');
-let renderBtnRef = document.querySelector('button[data-action="render"]');
-let destroyBtnRef = document.querySelector('button[data-action="destroy"]');
-let boxContainerRef = document.querySelector('#boxes');
+const refs = {
+  input: document.querySelector('#controls > input'),
+  renderBtn: document.querySelector('button[data-action="render"]'),
+  destroyBtn: document.querySelector('button[data-action="destroy"]'),
+  boxContainer: document.querySelector('#boxes'),
+};
 
-inputRef.addEventListener('change', handleInputValue);
-renderBtnRef.addEventListener('click', handleRender);
-destroyBtnRef.addEventListener('click', handleDestroy);
+const { input, renderBtn, destroyBtn, boxContainer } = refs;
 
-function handleInputValue(event) {
-  const inputVal = event.target.value;
-  amount = Number(inputVal);
-}
+// input.addEventListener('change', handleInputValue);
+// renderBtn.addEventListener('click', () => createBoxes(amount));
+renderBtn.addEventListener('click', createBoxes.bind(input));
+destroyBtn.addEventListener('click', handleDestroy);
+
+// let amount;
+
+// function handleInputValue({ target }) {
+//   amount = Number(target.value);
+// }
 
 function randomColor() {
   let color = Math.floor(Math.random() * Math.pow(256, 3)).toString(16);
   while (color.length < 6) {
     color = '0' + color;
   }
-  let finalColor = '#' + color;
-  return finalColor;
+  return '#' + color;
 }
 
-const createBoxes = function (amount) {
+function createBoxes() {
   let divSize = 30;
+  const amount = this.value;
+  const readyBoxes = [];
   for (let i = 0; i < amount; i += 1) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.style.height = `${divSize}px`;
     div.style.width = `${divSize}px`;
     div.style.backgroundColor = randomColor();
     divSize += 10;
-    boxContainerRef.appendChild(div);
+    readyBoxes.push(div);
   }
-};
-
-function handleRender() {
-  createBoxes(amount);
+  // const amount = [...new Array(Number(this.value))];
+  // const readyBoxes = amount.map(item => {
+  //   const div = document.createElement('div');
+  //   div.style.height = `${divSize}px`;
+  //   div.style.width = `${divSize}px`;
+  //   div.style.backgroundColor = randomColor();
+  //   divSize += 10;
+  //   return div;
+  // });
+  boxContainer.append(...readyBoxes);
 }
 
 function handleDestroy() {
-  boxContainerRef.textContent = '';
-  // const arrayChild = boxContainerRef.childNodes;
-  // console.dir(arrayChild);
-  // arrayChild.forEach(child => child.remove());
-  // while (arrayChild.length) {
-  //   arrayChild[0].remove();
-  // }
-  // for (let i = 0; i < arrayChild.length; i += 1) {
-  //   arrayChild[i].remove();
-  //   i -= 1;
-  // }
+  boxContainer.textContent = '';
 }

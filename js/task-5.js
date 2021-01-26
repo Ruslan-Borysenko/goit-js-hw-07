@@ -5,12 +5,11 @@
 //   document.getElementById('name-output').innerHTML = input.value;
 // };
 
-const textRef = document.getElementById('name-input');
-const nameOutput = document.getElementById('name-output');
+const textRef = document.querySelector('#name-input');
+const nameOutputRef = document.querySelector('#name-output');
 
 textRef.addEventListener('input', changeText);
 
-function changeText(e) {
-  console.log(e.target.value);
-  nameOutput.textContent = e.target.value;
+function changeText({ target }) {
+  nameOutput.textContent = target.value;
 }

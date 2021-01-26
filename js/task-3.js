@@ -26,12 +26,19 @@ const images = [
   },
 ];
 
-const listRef = document.getElementById('gallery');
-console.log(listRef);
-images.forEach(elem => {
-  const createImg = `<li><image src="${elem.url}" alt="${elem.alt} width="250" height="250""</li>`;
-  listRef.insertAdjacentHTML('beforeend', createImg);
-});
+const listRef = document.querySelector('#gallery');
+// images.forEach(elem => {
+//   const createImg = `<li><image src="${elem.url}" alt="${elem.alt} width="250" height="250""</li>`;
+//   listRef.insertAdjacentHTML('beforeend', createImg);
+// });
+const readyImgArrayDOM = images.map(
+  elem => `<li>
+    <image src="${elem.url}" alt="${elem.alt} width="250" height="250"/>
+    </li>`,
+);
+listRef.insertAdjacentHTML('beforeend', readyImgArrayDOM.join(''));
+// listRef.insertAdjacentHTML('beforeend', [...readyImgArrayDOM]);
+// як вставка коректно працює з масивом?
 
 listRef.classList.add('list');
 listRef.classList.add('gallery-list');
